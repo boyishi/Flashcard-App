@@ -1,0 +1,88 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".MainActivity">
+
+
+    <TextView
+        android:id="@+id/questionBox"
+        android:layout_width="match_parent"
+        android:layout_height="200dp"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentEnd="true"
+
+        android:layout_marginStart="-1dp"
+        android:layout_marginTop="36dp"
+        android:layout_marginEnd="7dp"
+        android:background="@drawable/question_box_styling"
+        android:fontFamily="monospace"
+        android:gravity="center"
+        android:text="Who is the 44th president of the United States"
+        android:textColor="@color/white"
+        android:textSize="32sp" />
+
+    <Button
+        android:id="@+id/optionA"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignBottom="@id/questionBox"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentEnd="true"
+
+        android:layout_marginTop="389dp"
+        android:layout_marginBottom="-138dp"
+        android:backgroundTint="@color/orange"
+        android:fontFamily="monospace"
+        android:text="Barack Obama" />
+
+    <Button
+        android:id="@+id/optionB"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignBottom="@id/optionA"
+
+        android:layout_alignParentStart="true"
+        android:layout_alignParentEnd="true"
+        android:layout_marginStart="-1dp"
+
+        android:layout_marginTop="463dp"
+        android:layout_marginBottom="-69dp"
+        android:backgroundTint="@color/orange"
+        android:fontFamily="monospace"
+        android:text="George H.W. Bush" />
+
+    <Button
+        android:id="@+id/optionC"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignBottom="@id/optionB"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentEnd="true"
+
+
+        android:layout_marginTop="542dp"
+        android:layout_marginBottom="-67dp"
+        android:backgroundTint="@color/orange"
+        android:fontFamily="monospace"
+        android:text="Bill Clinton" />
+
+    <Button
+        android:id="@+id/showAnswers"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+
+        android:layout_alignParentStart="true"
+        android:layout_alignParentTop="true"
+
+
+        android:layout_marginStart="158dp"
+        android:layout_marginTop="609dp"
+        android:layout_marginBottom="71dp"
+        android:text="Show" />
+
+
+</RelativeLayout>
