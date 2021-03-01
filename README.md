@@ -4,9 +4,7 @@
 
 
 ### App Walk-though
-`TODO://` Add the URL to your animated app walk-though `gif` in the image tag below. Make sure the gif actually renders and animates when viewing this README. (☝️ Remove this paragraph after after adding gif)
-
-<img src="YOUR_GIF_URL_HERE" width=200><br>
+<img src="https://github.com/boyishi/Flashcard-App/blob/master/Week2.gif" width=200><br>
 
 
 
