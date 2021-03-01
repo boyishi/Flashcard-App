@@ -4,7 +4,7 @@
 
 
 ### App Walk-though
-<img src="https://github.com/boyishi/Flashcard-App/blob/master/Week2.gif" width=200><br>
+<img src="https://github.com/boyishi/Learning-React/blob/master/UTGjTUd7Fu.gif" width=200><br>
 
 
 
