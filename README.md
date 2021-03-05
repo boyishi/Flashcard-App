@@ -4,7 +4,7 @@
 
 
 ### App Walk-though
-<img src="https://github.com/boyishi/Learning-React/blob/master/UTGjTUd7Fu.gif" width=200><br>
+<img src="http://g.recordit.co/cJ80Ad6L3N.gif" width=200><br>
 
 
 
