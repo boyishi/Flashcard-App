@@ -15,13 +15,13 @@
         android:layout_alignParentTop="true"
         android:layout_alignParentEnd="true"
 
-        android:layout_marginStart="-1dp"
-        android:layout_marginTop="36dp"
-        android:layout_marginEnd="7dp"
+        android:layout_marginStart="0dp"
+        android:layout_marginTop="27dp"
+        android:layout_marginEnd="-2dp"
         android:background="@drawable/question_box_styling"
         android:fontFamily="monospace"
         android:gravity="center"
-        android:text="Who is the 44th president of the United States"
+        android:text= "Who is the 44th president of the United States?"
         android:textColor="@color/white"
         android:textSize="32sp" />
 
@@ -79,11 +79,26 @@
         android:layout_alignParentTop="true"
 
 
-        android:layout_marginStart="123dp"
-        android:layout_marginTop="627dp"
+        android:layout_alignParentEnd="true"
+        android:layout_marginStart="64dp"
+        android:layout_marginTop="511dp"
+        android:layout_marginEnd="62dp"
         android:layout_marginBottom="71dp"
-        android:text="rESET aNSWERS
-" />
+        android:text="RESET ANSWERS" />
+
+    <Button
+        android:id="@+id/hideAnswers"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+
+        android:layout_alignParentStart="true"
+        android:layout_alignParentTop="true"
+
+        android:layout_marginStart="132dp"
+        android:layout_marginTop="565dp"
+        android:layout_marginEnd="132dp"
+        android:layout_marginBottom="118dp"
+        android:text="Hide ANSWERS" />
 
 
 </RelativeLayout>

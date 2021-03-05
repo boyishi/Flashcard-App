@@ -19,14 +19,15 @@ public class MainActivity extends AppCompatActivity {
         Button optionA = (Button) findViewById(R.id.optionA);
         Button optionB = (Button) findViewById(R.id.optionB);
         Button optionC = (Button) findViewById((R.id.optionC));
-        Button showAnswers = (Button) findViewById(R.id.showAnswers);
+        Button resetColor = (Button) findViewById(R.id.showAnswers);
+        Button hideAnswers = (Button) findViewById(R.id.hideAnswers);
         TextView questionBox = (TextView) findViewById(R.id.questionBox);
 
-
+        final boolean[] showAnswer = {true};
         final boolean[] visible = {true, false};
         final boolean[] clicked = {false};
 
-        showAnswers.setOnClickListener(new View.OnClickListener() {
+        resetColor.setOnClickListener(new View.OnClickListener() {
              @Override
             public void onClick(View v) {
                  clicked[0] = false;
@@ -72,17 +73,36 @@ public class MainActivity extends AppCompatActivity {
 
         questionBox.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
+                if (!showAnswer[0]){
+                    questionBox.setText("Barack Obama");
+                    questionBox.setBackgroundColor(getResources().getColor(R.color.green));
+                    showAnswer[0] = true;
+                }
+                else {
+                    questionBox.setText("Who is the 44th president of the United States?");
+                    questionBox.setBackgroundResource(R.drawable.question_box_styling);
+                    showAnswer[0] = false;
+                }
+
+            }
+        });
+
+        hideAnswers.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
                 if (visible[0]) {
                     optionA.setVisibility(View.INVISIBLE);
                     optionB.setVisibility(View.INVISIBLE);
                     optionC.setVisibility(View.INVISIBLE);
-                } else {
+                    visible[0] = false;
+                }
+                else {
                     optionA.setVisibility(View.VISIBLE);
                     optionB.setVisibility(View.VISIBLE);
                     optionC.setVisibility(View.VISIBLE);
+                    visible[0] = true;
                 }
 
-                visible[0] = !visible[0];
             }
         });
     }
