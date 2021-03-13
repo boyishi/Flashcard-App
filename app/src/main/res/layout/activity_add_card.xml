@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".AddCardActivity">
+
+    <ImageView
+        android:id="@+id/exitBtn"
+        android:layout_width="26dp"
+        android:layout_height="53dp"
+        android:layout_marginEnd="36dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.956"
+        app:srcCompat="@drawable/ic_cancel_icon" />
+
+    <EditText
+        android:id="@+id/questionTextField"
+        android:layout_width="298dp"
+        android:layout_height="59dp"
+        android:layout_marginTop="56dp"
+        android:layout_marginEnd="60dp"
+        android:ems="10"
+        android:hint="Enter the question here"
+        android:inputType="textMultiLine"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <EditText
+        android:id="@+id/answerTextField"
+        android:layout_width="297dp"
+        android:layout_height="56dp"
+        android:layout_marginEnd="60dp"
+        android:layout_marginBottom="484dp"
+        android:ems="10"
+        android:hint="Enter the answer here"
+        android:inputType="textMultiLine"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent" />
+
+    <ImageView
+        android:id="@+id/saveButton"
+        android:layout_width="43dp"
+        android:layout_height="37dp"
+        android:layout_marginStart="40dp"
+        android:layout_marginBottom="40dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:srcCompat="@drawable/ic_save_icon" />
+</androidx.constraintlayout.widget.ConstraintLayout>

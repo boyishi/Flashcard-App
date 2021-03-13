@@ -1,7 +1,9 @@
 package com.example.flashcardapp;
 
+import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
@@ -10,18 +12,20 @@ import android.widget.TextView;
 import org.w3c.dom.Text;
 
 public class MainActivity extends AppCompatActivity {
+    String question = "Who is the 44th president of the United States?";
+    String answer = "Barack Obama";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main);
-
         Button optionA = (Button) findViewById(R.id.optionA);
         Button optionB = (Button) findViewById(R.id.optionB);
         Button optionC = (Button) findViewById((R.id.optionC));
         Button resetColor = (Button) findViewById(R.id.showAnswers);
         Button hideAnswers = (Button) findViewById(R.id.hideAnswers);
         TextView questionBox = (TextView) findViewById(R.id.questionBox);
+
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.activity_main);
 
         final boolean[] showAnswer = {true};
         final boolean[] visible = {true, false};
@@ -74,12 +78,12 @@ public class MainActivity extends AppCompatActivity {
         questionBox.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
                 if (!showAnswer[0]){
-                    questionBox.setText("Barack Obama");
+                    questionBox.setText(answer);
                     questionBox.setBackgroundColor(getResources().getColor(R.color.green));
                     showAnswer[0] = true;
                 }
                 else {
-                    questionBox.setText("Who is the 44th president of the United States?");
+                    questionBox.setText(question);
                     questionBox.setBackgroundResource(R.drawable.question_box_styling);
                     showAnswer[0] = false;
                 }
@@ -105,5 +109,27 @@ public class MainActivity extends AppCompatActivity {
 
             }
         });
+
+        findViewById(R.id.myButton).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(MainActivity.this, AddCardActivity.class);
+                MainActivity.this.startActivityForResult(intent, 0);
+            }
+        });
     }
+
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+        if (resultCode == 1){
+            if (resultCode == RESULT_OK){
+                question = data.getStringExtra("QUESTION");
+                answer = data.getStringExtra("ANSWER");
+
+
+            }
+        }
+    }
+
 }
