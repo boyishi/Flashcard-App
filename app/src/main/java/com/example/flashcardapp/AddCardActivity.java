@@ -25,7 +25,7 @@ public class AddCardActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 String newQuestion = ((EditText) findViewById(R.id.questionTextField)).getText().toString();
-                String newAnswer = ((EditText) findViewById(R.id.questionTextField)).getText().toString();
+                String newAnswer = ((EditText) findViewById(R.id.answerTextField)).getText().toString();
 
                 Intent data = new Intent();
                 data.putExtra("QUESTION", newQuestion);
