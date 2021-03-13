@@ -24,7 +24,7 @@
 
 ## Lab 2
 
-<img src="http://g.recordit.co/ImpFyD2xG9.gif" width=200><br>
+<img src="http://g.recordit.co/nHofyhzeEA.gif" width=200><br>
 
 
 ## Required
