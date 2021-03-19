@@ -11,7 +11,13 @@ import android.widget.TextView;
 
 import org.w3c.dom.Text;
 
+import java.util.List;
+
 public class MainActivity extends AppCompatActivity {
+    List<Flashcard> allFlashcards;
+    FlashcardDatabase flashcardDatabase;
+    int currentCardDisplayedIndex = 0;
+
     TextView questionBox;
     String question;
     String answer;
@@ -27,13 +33,27 @@ public class MainActivity extends AppCompatActivity {
         Button optionC = (Button) findViewById((R.id.optionC));
         Button resetColor = (Button) findViewById(R.id.showAnswers);
         Button hideAnswers = (Button) findViewById(R.id.hideAnswers);
+
         questionBox = (TextView) findViewById(R.id.questionBox);
-        question = "Who is the 44th president of the United States?";
-        answer = "Barack Obama";
 
         final boolean[] showAnswer = {true};
         final boolean[] visible = {true, false};
         final boolean[] clicked = {false};
+
+        flashcardDatabase = new FlashcardDatabase((getApplicationContext()));
+        allFlashcards = flashcardDatabase.getAllCards();
+
+        if (allFlashcards != null && allFlashcards.size() > 0) {
+            question = allFlashcards.get(0).getQuestion();
+            answer = allFlashcards.get(0).getAnswer();
+
+            questionBox.setText(question);
+        }
+        else {
+            question = "Who is the 44th president of the United States?";
+            answer = "Barack Obama";
+        }
+
 
         resetColor.setOnClickListener(new View.OnClickListener() {
              @Override
@@ -123,6 +143,23 @@ public class MainActivity extends AppCompatActivity {
                 startActivityForResult(intent, 0);
             }
         });
+
+        findViewById(R.id.next_button).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if (allFlashcards.size() == 0)
+                    return;
+
+                // advance pointer index
+                currentCardDisplayedIndex = (currentCardDisplayedIndex + 1) % allFlashcards.size();
+                // set the question and answer textViews
+                question = allFlashcards.get(currentCardDisplayedIndex).getQuestion();
+                answer = allFlashcards.get(currentCardDisplayedIndex).getAnswer();
+
+                questionBox.setText(question);
+            }
+        });
+
     }
 
     @Override
@@ -134,6 +171,7 @@ public class MainActivity extends AppCompatActivity {
         }
 
         questionBox.setText(question);
-
-    }
+        flashcardDatabase.insertCard(new Flashcard(question, answer));
+        allFlashcards = flashcardDatabase.getAllCards();
+  }
 }
