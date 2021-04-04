@@ -8,7 +8,7 @@
 
 
     <TextView
-        android:id="@+id/questionBox"
+        android:id="@+id/flashcard_question"
         android:layout_width="match_parent"
         android:layout_height="200dp"
         android:layout_alignParentStart="true"
@@ -25,80 +25,25 @@
         android:textColor="@color/white"
         android:textSize="32sp" />
 
-    <Button
-        android:id="@+id/optionA"
+    <TextView
+        android:id="@+id/flashcard_answer"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_alignBottom="@id/questionBox"
-        android:layout_alignParentStart="true"
-        android:layout_alignParentEnd="true"
-
-        android:layout_marginTop="389dp"
-        android:layout_marginBottom="-138dp"
-        android:backgroundTint="@color/orange"
-        android:fontFamily="monospace"
-        android:text="Barack Obama" />
-
-    <Button
-        android:id="@+id/optionB"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_alignBottom="@id/optionA"
-
-        android:layout_alignParentStart="true"
-        android:layout_alignParentEnd="true"
-        android:layout_marginStart="-1dp"
-
-        android:layout_marginTop="463dp"
-        android:layout_marginBottom="-69dp"
-        android:backgroundTint="@color/orange"
-        android:fontFamily="monospace"
-        android:text="George H.W. Bush" />
-
-    <Button
-        android:id="@+id/optionC"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_alignBottom="@id/optionB"
-        android:layout_alignParentStart="true"
-        android:layout_alignParentEnd="true"
-
-
-        android:layout_marginTop="542dp"
-        android:layout_marginBottom="-67dp"
-        android:backgroundTint="@color/orange"
-        android:fontFamily="monospace"
-        android:text="Bill Clinton" />
-
-    <Button
-        android:id="@+id/showAnswers"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-
+        android:layout_height="200dp"
         android:layout_alignParentStart="true"
         android:layout_alignParentTop="true"
-
-
         android:layout_alignParentEnd="true"
-        android:layout_marginStart="64dp"
-        android:layout_marginTop="511dp"
-        android:layout_marginEnd="62dp"
-        android:layout_marginBottom="71dp"
-        android:text="RESET ANSWERS" />
 
-    <Button
-        android:id="@+id/hideAnswers"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_marginStart="0dp"
+        android:layout_marginTop="27dp"
+        android:layout_marginEnd="-2dp"
+        android:background="@color/green"
+        android:fontFamily="monospace"
+        android:gravity="center"
+        android:text= "Barack Obama"
+        android:textColor="@color/white"
+        android:textSize="32sp"
+        android:layout_below="@id/flashcard_question" />
 
-        android:layout_alignParentStart="true"
-        android:layout_alignParentTop="true"
-
-        android:layout_marginStart="132dp"
-        android:layout_marginTop="565dp"
-        android:layout_marginEnd="132dp"
-        android:layout_marginBottom="118dp"
-        android:text="Hide ANSWERS" />
 
     <ImageView
         android:id="@+id/myButton"

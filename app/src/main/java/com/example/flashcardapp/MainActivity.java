@@ -6,9 +6,13 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
-import android.widget.Button;
+import android.view.ViewAnimationUtils;
+import android.view.animation.Animation;
+import android.view.animation.AnimationUtils;
 import android.widget.TextView;
+import android.animation.*;
 
+import android.widget.Button;
 import org.w3c.dom.Text;
 
 import java.util.List;
@@ -18,7 +22,9 @@ public class MainActivity extends AppCompatActivity {
     FlashcardDatabase flashcardDatabase;
     int currentCardDisplayedIndex = 0;
 
-    TextView questionBox;
+    TextView flashcard_question;
+    TextView flashcard_answer;
+
     String question;
     String answer;
 
@@ -28,17 +34,11 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        Button optionA = (Button) findViewById(R.id.optionA);
-        Button optionB = (Button) findViewById(R.id.optionB);
-        Button optionC = (Button) findViewById((R.id.optionC));
-        Button resetColor = (Button) findViewById(R.id.showAnswers);
-        Button hideAnswers = (Button) findViewById(R.id.hideAnswers);
+        flashcard_question = (TextView) findViewById(R.id.flashcard_question);
+        flashcard_answer = (TextView) findViewById(R.id.flashcard_answer);
 
-        questionBox = (TextView) findViewById(R.id.questionBox);
-
-        final boolean[] showAnswer = {true};
-        final boolean[] visible = {true, false};
-        final boolean[] clicked = {false};
+        question = "Who is the 44th president of the United States?";
+        answer = "Barack Obama";
 
         flashcardDatabase = new FlashcardDatabase((getApplicationContext()));
         allFlashcards = flashcardDatabase.getAllCards();
@@ -47,92 +47,33 @@ public class MainActivity extends AppCompatActivity {
             question = allFlashcards.get(0).getQuestion();
             answer = allFlashcards.get(0).getAnswer();
 
-            questionBox.setText(question);
-        }
-        else {
-            question = "Who is the 44th president of the United States?";
-            answer = "Barack Obama";
+            flashcard_question.setText(question);
+            flashcard_answer.setText(answer);
         }
 
-
-        resetColor.setOnClickListener(new View.OnClickListener() {
-             @Override
+        flashcard_question.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
-                 clicked[0] = false;
-                 optionA.setBackgroundTintList(getResources().getColorStateList(R.color.orange));
-                 optionB.setBackgroundTintList(getResources().getColorStateList(R.color.orange));
-                 optionC.setBackgroundTintList(getResources().getColorStateList(R.color.orange));
-             }
-        });
+                // get center of the circle
+                int cx = flashcard_answer.getWidth() / 2;
+                int cy = flashcard_answer.getHeight() / 2;
 
-        optionA.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                if (!clicked[0]){
-                    optionA.setBackgroundTintList(getResources().getColorStateList(R.color.green));
-                    clicked[0] = true;
-                }
+                // get the final radius for the clipping cirve
+                float final_radius = (float) Math.hypot(cx, cy);
+                Animator anim = ViewAnimationUtils.createCircularReveal(flashcard_answer, cx, cy, 0f, final_radius);
 
+                flashcard_question.setVisibility(View.INVISIBLE);
+                flashcard_answer.setVisibility(View.VISIBLE);
+
+                anim.setDuration(3000);
+                anim.start();
             }
         });
 
-        optionB.setOnClickListener(new View.OnClickListener() {
+        flashcard_answer.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if (!clicked[0]){
-                    optionA.setBackgroundTintList(getResources().getColorStateList(R.color.green));
-                    optionB.setBackgroundTintList(getResources().getColorStateList(R.color.red));
-                    clicked[0] = true;
-                }
-
-            }
-        });
-
-        optionC.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                if (!clicked[0]){
-                    optionA.setBackgroundTintList(getResources().getColorStateList(R.color.green));
-                    optionC.setBackgroundTintList(getResources().getColorStateList(R.color.red));
-                    clicked[0] = true;
-                }
-            }
-        });
-
-        questionBox.setOnClickListener(new View.OnClickListener() {
-            public void onClick(View v) {
-                if (!showAnswer[0]){
-                    questionBox.setText(answer);
-                    System.out.println(answer);
-                    questionBox.setBackgroundColor(getResources().getColor(R.color.green));
-                    showAnswer[0] = true;
-                }
-                else {
-                    questionBox.setText(question);
-                    System.out.println(question);
-                    questionBox.setBackgroundResource(R.drawable.question_box_styling);
-                    showAnswer[0] = false;
-                }
-
-            }
-        });
-
-        hideAnswers.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                if (visible[0]) {
-                    optionA.setVisibility(View.INVISIBLE);
-                    optionB.setVisibility(View.INVISIBLE);
-                    optionC.setVisibility(View.INVISIBLE);
-                    visible[0] = false;
-                }
-                else {
-                    optionA.setVisibility(View.VISIBLE);
-                    optionB.setVisibility(View.VISIBLE);
-                    optionC.setVisibility(View.VISIBLE);
-                    visible[0] = true;
-                }
-
+                flashcard_question.setVisibility(View.VISIBLE);
+                flashcard_answer.setVisibility(View.INVISIBLE);
             }
         });
 
@@ -141,12 +82,40 @@ public class MainActivity extends AppCompatActivity {
             public void onClick(View v) {
                 Intent intent = new Intent(MainActivity.this, AddCardActivity.class);
                 startActivityForResult(intent, 0);
+                // first parameter is the "enter" animation for the new launched activity
+                // second parameter is the "exit" animation for the current activity we're leaving
+                overridePendingTransition(R.anim.right_in, R.anim.left_out);
             }
         });
 
         findViewById(R.id.next_button).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                final Animation leftOutAnim = AnimationUtils.loadAnimation(v.getContext(), R.anim.left_out);
+                final Animation rightInAnim = AnimationUtils.loadAnimation(v.getContext(), R.anim.right_in);
+
+                leftOutAnim.setAnimationListener(new Animation.AnimationListener() {
+                    @Override
+                    public void onAnimationStart(Animation animation) {
+
+                    }
+
+                    @Override
+                    public void onAnimationEnd(Animation animation) {
+                        findViewById(R.id.flashcard_question).startAnimation(rightInAnim);
+                    }
+
+                    @Override
+                    public void onAnimationRepeat(Animation animation) {
+
+                    }
+                });
+
+                findViewById(R.id.flashcard_question).startAnimation(leftOutAnim);
+                if (flashcard_question.getVisibility() == View.INVISIBLE){
+                    flashcard_question.setVisibility(View.VISIBLE);
+                    flashcard_answer.setVisibility(View.INVISIBLE);
+                }
                 if (allFlashcards.size() == 0)
                     return;
 
@@ -156,7 +125,8 @@ public class MainActivity extends AppCompatActivity {
                 question = allFlashcards.get(currentCardDisplayedIndex).getQuestion();
                 answer = allFlashcards.get(currentCardDisplayedIndex).getAnswer();
 
-                questionBox.setText(question);
+                flashcard_question.setText(question);
+                flashcard_answer.setText(answer);
             }
         });
 
@@ -170,7 +140,9 @@ public class MainActivity extends AppCompatActivity {
             answer = data.getStringExtra("ANSWER");
         }
 
-        questionBox.setText(question);
+        flashcard_question.setText(question);
+        flashcard_answer.setText(answer);
+
         flashcardDatabase.insertCard(new Flashcard(question, answer));
         allFlashcards = flashcardDatabase.getAllCards();
   }
